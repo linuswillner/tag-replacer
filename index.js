@@ -27,7 +27,7 @@ class TagReplacer {
           let name = input.split(':', 2)[0]
           let args = input.split(':', 2)[1].split(';')
 
-          if (this.replacers.map((r) => { return r.name }).some(this._mapReplacers('names'))) {
+          if (this._mapReplacers('names').some(r => r.includes(name))) {
             
           }
         })
