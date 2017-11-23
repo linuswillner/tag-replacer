@@ -1,0 +1,36 @@
+{
+  "name": "tag-replacer",
+  "version": "1.0.0",
+  "description": "A Node.js and web JS module for replacing template tags in strings. Edit",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LWTechGaming/tag-replacer.git"
+  },
+  "keywords": [
+    "tags",
+    "replace",
+    "tag",
+    "script"
+  ],
+  "author": "Linus Willner",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LWTechGaming/tag-replacer/issues"
+  },
+  "homepage": "https://github.com/LWTechGaming/tag-replacer#readme",
+  "dependencies": {
+
+  },
+  "devDependencies": {
+    "eslint": "^4.11.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1"
+  }
+}
