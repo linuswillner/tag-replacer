@@ -1,3 +1,17 @@
+/* eslint-disable no-extend-native */
+const defaultReplacers = require('./builtin.js')
+
+String.prototype.replaceAll = (string, searchString, replaceString) => {
+  return string.split(searchString).join(replaceString)
+}
+
+function replaceAllTags (string, matches, replace) {
+  for (let match in matches) {
+    string = string.replaceAll(string, matches[match], replace)
+  }
+  return string
+}
+
 /**
  * Main TagReplacer class.
  * @class
@@ -6,40 +20,47 @@ class TagReplacer {
   /**
    * Replacer options.
    * @param {Array.<name: String, func: Function>} replacers - Array of replacer objects.
-   * @param {Object} options - Object containing the options to pass to the replacer.
    */
-  constructor (replacers, options) {
+  constructor (replacers) {
     this.replacers = replacers
-    this.options = options
   }
 
   /**
    * Parse a string for tags and replace them.
-   * @param {Array.<String>} strings - Strings to parse tags from.
+   * @param {String} string - String to parse tags from.
    * @returns {Promise} - Promise that resolves with the parsed strings.
    */
-  parse (strings) {
-    return new Promise(resolve => {
-      strings.forEach((string) => {
-        let matches = string.match(/{(.*?)}/gi)
-        matches.forEach((tag) => {
-          let input = tag.slice(1, -1)
-          let name = input.split(':', 2)[0]
-          let args = input.split(':', 2)[1].split(';')
+  replace (string) {
+    let tags = string.match(/{(.*?\S(:|;).*?\S)}/gi)
+    let newString = ''
 
-          if (this._mapReplacers('names').some(r => r.includes(name))) {
-            
-          }
-        })
-      })
-    })
-  }
+    // Get the tag contents and split them into name and args
+    let raw = tags[0].slice(1, -1)
+    let input = raw.split(/:|;/gi)
+    let name = input.splice(0, 1)
+    let args = input
 
-  _mapReplacers (val) {
-    if (val === 'names') return this.replacers.map((r) => { return r.name })
-    if (val === 'funcs') return this.replacers.map((r) => { return r.func })
-    else return undefined
+    if (!this.replacers && defaultReplacers.hasOwnProperty(name)) {
+      let val = defaultReplacers[name](args)
+      newString = replaceAllTags(string, tags, val)
+    } else if (this.replacers) {
+      let val
+      // If custom replacers contain this one, use that
+      if (this.replacers.hasOwnProperty(name)) {
+        val = this.replacers[name](args)
+        newString = replaceAllTags(string, tags, val)
+      // If default replacers contain this one, use that
+      } else if (defaultReplacers.hasOwnProperty(name)) {
+        val = defaultReplacers[name](args)
+        newString = replaceAllTags(string, tags, val)
+      } else {
+        return // Do nothing, replacer not found
+      }
+    } else {
+      return // Do nothing, replacer not found
+    }
+    return newString
   }
 }
 
-module.exports = TagReplacer
+exports.TagReplacer = TagReplacer
