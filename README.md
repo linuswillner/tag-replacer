@@ -10,7 +10,7 @@ The idea of this module is to provide a lightweight and simple alternative to Ta
 
 ## Installation & usage
 
-If you wish to receive updates more scarcely in an LTS-esque way, just install the module from NPM via `npm install --save tag-replacer`. If you want newer features immediately, make the module depend get the code from `dev` branch `npm install --save github:lwtechgaming/tag-replacer#dev`.
+If you wish to receive updates more scarcely in an LTS-esque way, just install the module from NPM via `npm install --save tag-replacer`. If you want newer features immediately, make the module get the code from `dev` branch `npm install --save github:lwtechgaming/tag-replacer#dev`.
 
 The module scans for **{tags}** in the strings it's provided with. The required format is **{cmd:arg}**. You can add as many semicolon-separated (**arg1;arg2;arg3**) arguments as you need. You can also use the TagScript syntax (**{cmd;arg}**).
 
