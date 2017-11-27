@@ -1,11 +1,11 @@
 # tag-replacer
 
-<p align="center">
+<p>
   <img src="https://badges.greenkeeper.io/LWTechGaming/tag-replacer.svg">
   <img src="https://img.shields.io/circleci/project/github/LWTechGaming/tag-replacer.svg">
   <img src="https://img.shields.io/github/tag/LWTechGaming/tag-replacer.svg">
   <img src="https://img.shields.io/npm/l/tag-replacer.svg">
-</p>
+<p>
 
 A Node.js module for replacing template tags in strings. It allows you to set placeholders in strings that can be filled in later.
 
