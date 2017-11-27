@@ -8,11 +8,24 @@ You may ask yourself, why should I use this over TagScript? The answer is that T
 
 The idea of this module is to provide a lightweight and simple alternative to TagScript, retaining the common syntax and compatibility, while providing a good way to deal with customizeable user input and output.
 
-## How it works
+## Installation & usage
+
+If you wish to receive updates more scarcely in an LTS-esque way, just install the module from NPM via `npm install --save tag-replacer`. If you want newer features immediately, make the module depend get the code from `dev` branch `npm install --save github:LWTechGaming/tag-replacer#dev`.
 
 The module scans for **{tags}** in the strings it's provided with. The required format is **{cmd:arg}**. You can add as many semicolon-separated (**arg1;arg2;arg3**) arguments as you need. You can also use the TagScript syntax (**{cmd;arg}**).
 
-You can use the [built-in replacers](builtin.js) or program your own and pass them to the constructor. See [example.js](example.js) and the API reference below for more information.
+You can use the [built-in replacers](builtin.js) or program your own and pass them to the constructor. Details on how to do this can be found in [example.js](example.js) and the API reference below.
+
+Example:
+```js
+const TR = require('tag-replacer').TagReplacer
+const TagReplacer = new TR() // No custom replacers
+
+// TagReplacer-style tag
+TagReplacer.replace('this tag has {length:arg1;arg2;arg3} arguments') // 3
+// TagScript-style tag
+TagReplacer.replace('this tag has {length;arg1;arg2;arg3} arguments') // 3
+```
 
 ## API
 
@@ -48,7 +61,7 @@ const replacers = {
 
 Replacer method. Scans `string` for any tags with the valid format and replaces them, if a replacer exists for them. If no replacer exists or the format is invalid, the string will be returned in unchanged form.
 
-## Checks and errors
+## Custom checks
 
 Sometimes, users aren't exactly co-operative. In fact, they rarely are. As such, you may need to employ some form of input validation for more complicated replacers, and if necessary, figure out what to do about it.
 

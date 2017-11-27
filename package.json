@@ -13,10 +13,10 @@
   "keywords": [
     "tags",
     "replace",
-    "tag",
-    "script"
+    "tagscript",
+    "strings"
   ],
-  "author": "Linus Willner",
+  "author": "Linus Willner <hello@linuswillner.me>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/LWTechGaming/tag-replacer/issues"
