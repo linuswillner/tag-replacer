@@ -1,5 +1,11 @@
 # tag-replacer
 
+<p align="center">
+  <img src="https://img.shields.io/circleci/project/github/LWTechGaming/tag-replacer.svg">
+  <img src="https://img.shields.io/github/tag/LWTechGaming/tag-replacer.svg">
+  <img src="https://img.shields.io/npm/l/tag-replacer.svg">
+</p>
+
 A Node.js module for replacing template tags in strings. It allows you to set placeholders in strings that can be filled in later.
 
 This module was extensively inspired by, and also supports the syntax of, [devsnek/TagScript](https://github.com/devsnek/TagScript). Most of the built-in replacers are intended to be compatible with TagScript tags.
