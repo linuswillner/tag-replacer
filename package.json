@@ -4,7 +4,9 @@
   "description": "A Node.js module for replacing template tags in strings.",
   "main": "index.js",
   "scripts": {
-    "test": "eslint ."
+    "test": "eslint .",
+    "gk-update": "greenkeeper-lockfile-update",
+    "gk-upload": "greenkeeper-lockfile-update"
   },
   "repository": {
     "type": "git",

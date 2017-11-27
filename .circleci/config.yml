@@ -17,10 +17,10 @@ jobs:
             - node_modules
       - run:
           name: Update Greenkeeper lockfile
-          command: greenkeeper-lockfile-update
+          command: npm run gk-update
       - run:
           name: Run tests
           command: npm test
       - run:
           name: Upload Greenkeeper lockfile
-          command: greenkeeper-lockfile-upload
+          command: npm run gk-upload
