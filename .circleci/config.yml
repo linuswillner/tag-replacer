@@ -16,5 +16,11 @@ jobs:
           paths:
             - node_modules
       - run:
+          name: Update Greenkeeper lockfile
+          run: greenkeeper-lockfile-update
+      - run:
           name: Run tests
           command: npm test
+      - run:
+          name: Upload Greenkeeper lockfile
+          run: greenkeeper-lockfile-upload
