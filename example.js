@@ -5,7 +5,7 @@ const TR = require('./index.js').TagReplacer // You can require the NPM module
 const custom = {
   // Simple replacer without checks
   'join': args => { return args.join(', ') }
-  // Custom checks can be added at will here to enforce requirements
+  // Custom checks can be added here at will to enforce requirements
   // You can also require NPM modules or your own modules and incorporate them in replacers
 }
 
@@ -13,12 +13,11 @@ const custom = {
 const TagReplacer = new TR(custom)
 
 // Call the replacers
-let a = TagReplacer.replace('this tag has {length:arg1;arg2;arg3} arguments') // 3
-let b = TagReplacer.replace('and the arguments are {join:arg1;arg2;arg3}') // arg1, arg2, arg3
-let c = TagReplacer.replace('strings can be turned into {upper:uppercase} and {upper:LOWERCASE}') // UPPERCASE
-let d = TagReplacer.replace('the program wants me to eat a {choose:banana;apple;orange}') // banana, apple or orange
+TagReplacer.replace('this tag has {length:arg1;arg2;arg3} arguments') // 3
+TagReplacer.replace('and the arguments are {join:arg1;arg2;arg3}') // arg1, arg2, arg3
 
-console.log(a)
-console.log(b)
-console.log(c)
-console.log(d)
+TagReplacer.replace('strings can be turned into {upper:uppercase} and {lower:LOWERCASE}') // UPPERCASE and lowercase
+TagReplacer.replace('the program wants me to eat a {choose:banana;apple;orange}') // banana, apple or orange
+
+// An example with the format of https://github.com/devsnek/TagScript
+TagReplacer.replace('TagScript tags ({length;arg1;arg2;arg3}) can also be parsed with {upper;this}')
