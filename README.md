@@ -1,8 +1,7 @@
 # tag-replacer
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/LWTechGaming/tag-replacer.svg)](https://greenkeeper.io/)
-
 <p align="center">
+  <img src="https://badges.greenkeeper.io/LWTechGaming/tag-replacer.svg">
   <img src="https://img.shields.io/circleci/project/github/LWTechGaming/tag-replacer.svg">
   <img src="https://img.shields.io/github/tag/LWTechGaming/tag-replacer.svg">
   <img src="https://img.shields.io/npm/l/tag-replacer.svg">
