@@ -9,7 +9,7 @@
 
 A Node.js module for replacing template tags in strings. It allows you to set placeholders in strings that can be filled in later.
 
-This module was extensively inspired by, and also supports the syntax of, [devsnek/TagScript](https://github.com/devsnek/TagScript). Most of the built-in replacers are intended to be compatible with TagScript tags.
+This module was extensively inspired by, and also supports the syntax of, [devsnek/TagScript](https://github.com/devsnek/TagScript). All built-in replacers are intended to be compatible with TagScript tags, some were not ported over to this module.
 
 You may ask yourself, why should I use this over TagScript? The answer is that TagScript is a very complicated module, one which could be classified as an interpreter. It features a compiler, lexer and IDE highlighter. It also requires you to install Python 2.7 and so forth due to the dependencies it has. As such, it can be frightening to newcomers and a little too complicated for common use cases.
 
@@ -17,9 +17,11 @@ The idea of this module is to provide a lightweight and simple alternative to Ta
 
 ## Installation & usage
 
-If you wish to receive updates more scarcely in an LTS-esque way, just install the module from NPM via `npm install --save tag-replacer`. If you want newer features immediately, make the module get the code from `dev` branch `npm install --save github:lwtechgaming/tag-replacer#dev`.
+If you wish to receive updates more scarcely in an LTS-esque way, just install the module from NPM via `npm install --save tag-replacer`.
 
-The module scans for **{tags}** in the strings it's provided with. The required format is **{cmd:arg}**. You can add as many semicolon-separated (**arg1;arg2;arg3**) arguments as you need. You can also use the TagScript syntax (**{cmd;arg}**).
+If you want newer features immediately, make the module get the code from the `dev` branch via `npm install --save github:lwtechgaming/tag-replacer#dev`.
+
+The module scans for **{tags}** in the strings it's provided with. The required format is **{cmd:arg}**. You can add as many semicolon-separated (**arg1;arg2;arg3**) arguments as you need. You can also use the TagScript syntax (**{cmd;arg}**) if `tagscript` is not set to `false` in the [options](#configuration).
 
 You can use the [built-in replacers](builtin.js) or program your own and pass them to the constructor. Details on how to do this can be found in [example.js](example.js) and the API reference below.
 
@@ -36,9 +38,9 @@ TagReplacer.replace('this tag has {length;arg1;arg2;arg3} arguments') // 3
 
 ## API
 
-### TagReplacer(replacers)
+### TagReplacer(replacers, options)
 
-Main TagReplacer class. `replacers` is an object containing your custom replacers.
+Main TagReplacer class. `replacers` is an object containing your custom replacers. `options` is an object with option definitions, see [Configuration](#configuration).
 
 The `replacers` object contains object properties that are [functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) which return a [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String).
 
@@ -66,7 +68,15 @@ const replacers = {
 
 ### TagReplacer.replace(string)
 
-Replacer method. Scans `string` for any tags with the valid format and replaces them, if a replacer exists for them. If no replacer exists or the format is invalid, the string will be returned in unchanged form.
+Replacer method. Scans `string` for any tags with the valid format and replaces them, if a replacer exists for them. If no replacer exists or the format is invalid, the string will be returned in unchanged form. If no string is passed, the function will return `undefined`.
+
+## Configuration
+
+Currently, the module supports the following options:
+
+| Property | Description | Type | Default |
+| -------- | ----------- | ---- | ------- |
+| tagscript | Whether to parse TagScript-formatted tags or not. | Boolean | true |
 
 ## Custom checks
 
