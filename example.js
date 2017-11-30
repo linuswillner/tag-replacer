@@ -10,7 +10,7 @@ const custom = {
 }
 
 // Initialize the module
-const TagReplacer = new TR(custom)
+const TagReplacer = new TR(custom) // You can also pass an options object
 
 // Call the replacers
 TagReplacer.replace('this tag has {length:arg1;arg2;arg3} arguments') // 3
@@ -20,4 +20,5 @@ TagReplacer.replace('strings can be turned into {upper:uppercase} and {lower:LOW
 TagReplacer.replace('the program wants me to eat a {choose:banana;apple;orange}') // banana, apple or orange
 
 // An example with the format of https://github.com/devsnek/TagScript
+// Will work except when tagscript: false is set in the module options
 TagReplacer.replace('TagScript tags ({length;arg1;arg2;arg3}) can also be parsed with {upper;this}')

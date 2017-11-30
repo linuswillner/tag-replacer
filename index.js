@@ -14,7 +14,7 @@ class TagReplacer {
   /**
    * Replacer options.
    * @param {Object} replacers - Object with custom replacers. See https://github.com/LWTechGaming/tag-replacer/tree/master/builtin.js.
-   * @param {Object} options - Object with options. See README.md under "Configuration".
+   * @param {Object} options - Object with options. See  https://github.com/LWTechGaming/tag-replacer#readme under "Configuration".
    */
   constructor (replacers, options) {
     this.replacers = replacers
@@ -27,7 +27,7 @@ class TagReplacer {
    * @returns {String} - String where the tags have been replaced with the appropriate values.
    */
   replace (string) {
-    if (!string) return undefined
+    if (!string) return undefined // No string, return undefined
     else {
       let re
       if (this.options && this.options.tagscript === false) re = /{(.*?\S(:).*?\S)}/gi
@@ -36,12 +36,12 @@ class TagReplacer {
       let tags = string.match(re)
       let newString = string
 
-      if (!tags) return string // Return unchanged string
+      if (!tags) return string // No matches, return unchanged
       else {
         for (let tag of tags) {
         // Parse function name and args
           let raw = tag.slice(1, -1)
-          let input = raw.split(/:|;/gi)
+          let input = this.options && this.options.tagscript === false ? raw.split(/:/gi) : raw.split(/:|;/gi)
           let name = String(input.splice(0, 1))
           let args = input
 
@@ -50,15 +50,19 @@ class TagReplacer {
             newString = newString.replaceAll(newString, tag, val)
           } else if (this.replacers) {
             let val
-            // If custom replacers contain this one, use that
+            // Prioritise custom replacers over default
             if (this.replacers.hasOwnProperty(name)) {
               val = this.replacers[name](args)
               newString = newString.replaceAll(newString, tag, val)
-              // If default replacers contain this one, use that
+              // Fallback to defaults if custom replacers didn't contain it
             } else if (defaultReplacers.hasOwnProperty(name)) {
               val = defaultReplacers[name](args)
               newString = newString.replaceAll(newString, tag, val)
+            } else {
+              return string // Nothing passed
             }
+          } else {
+            return string // Nothing passed
           }
         }
         return newString
