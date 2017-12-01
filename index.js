@@ -13,10 +13,12 @@ String.prototype.replaceAll = (string, searchString, replaceString) => {
 class TagReplacer {
   /**
    * Replacer options.
-   * @param {Object} replacers - Object with custom replacers. See https://github.com/LWTechGaming/tree/master/builtin.js for examples.
+   * @param {Object} replacers - Object with custom replacers. See https://github.com/LWTechGaming/tag-replacer/tree/master/builtin.js.
+   * @param {Object} options - Object with options. See  https://github.com/LWTechGaming/tag-replacer#readme under "Configuration".
    */
-  constructor (replacers) {
+  constructor (replacers, options) {
     this.replacers = replacers
+    this.options = options
   }
 
   /**
@@ -25,37 +27,46 @@ class TagReplacer {
    * @returns {String} - String where the tags have been replaced with the appropriate values.
    */
   replace (string) {
-    let tags = string.match(/{(.*?\S(:|;).*?\S)}/gi)
-    let newString = string
+    if (!string) return undefined // No string, return undefined
+    else {
+      let re
+      if (this.options && this.options.tagscript === false) re = /{(.*?\S(:).*?\S)}/gi
+      else re = /{(.*?\S(:|;).*?\S)}/gi
 
-    if (!tags) {
-      // Return unchanged string
-      return string
-    } else {
-      for (let tag of tags) {
+      let tags = string.match(re)
+      let newString = string
+
+      if (!tags) return string // No matches, return unchanged
+      else {
+        for (let tag of tags) {
         // Parse function name and args
-        let raw = tag.slice(1, -1)
-        let input = raw.split(/:|;/gi)
-        let name = String(input.splice(0, 1))
-        let args = input
+          let raw = tag.slice(1, -1)
+          let input = this.options && this.options.tagscript === false ? raw.split(/:/gi) : raw.split(/:|;/gi)
+          let name = String(input.splice(0, 1))
+          let args = input
 
-        if (!this.replacers && defaultReplacers.hasOwnProperty(name)) {
-          let val = defaultReplacers[name](args)
-          newString = newString.replaceAll(newString, tag, val)
-        } else if (this.replacers) {
-          let val
-          // If custom replacers contain this one, use that
-          if (this.replacers.hasOwnProperty(name)) {
-            val = this.replacers[name](args)
+          if (!this.replacers && defaultReplacers.hasOwnProperty(name)) {
+            let val = defaultReplacers[name](args)
             newString = newString.replaceAll(newString, tag, val)
-          // If default replacers contain this one, use that
-          } else if (defaultReplacers.hasOwnProperty(name)) {
-            val = defaultReplacers[name](args)
-            newString = newString.replaceAll(newString, tag, val)
+          } else if (this.replacers) {
+            let val
+            // Prioritise custom replacers over default
+            if (this.replacers.hasOwnProperty(name)) {
+              val = this.replacers[name](args)
+              newString = newString.replaceAll(newString, tag, val)
+              // Fallback to defaults if custom replacers didn't contain it
+            } else if (defaultReplacers.hasOwnProperty(name)) {
+              val = defaultReplacers[name](args)
+              newString = newString.replaceAll(newString, tag, val)
+            } else {
+              return string // Nothing passed
+            }
+          } else {
+            return string // Nothing passed
           }
         }
+        return newString
       }
-      return newString
     }
   }
 }
