@@ -27,7 +27,7 @@ You can use the [built-in replacers](builtin.js) or program your own and pass th
 
 Example:
 ```js
-const TR = require('tag-replacer').TagReplacer
+const TR = require('tag-replacer')
 const TagReplacer = new TR() // No custom replacers
 
 // TagReplacer-style tag
