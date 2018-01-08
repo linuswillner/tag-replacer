@@ -71,4 +71,4 @@ class TagReplacer {
   }
 }
 
-exports.TagReplacer = TagReplacer
+module.exports = TagReplacer
