@@ -6,7 +6,7 @@
   "scripts": {
     "test": "eslint .",
     "gk-update": "greenkeeper-lockfile-update",
-    "gk-upload": "greenkeeper-lockfile-update"
+    "gk-upload": "greenkeeper-lockfile-upload"
   },
   "repository": {
     "type": "git",
