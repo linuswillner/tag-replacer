@@ -15,8 +15,8 @@ class TagReplacer {
    * Replacer options.
    * @param {Object} replacers - Object with custom replacers.
    * @param {Object} options - Object with options.
-   * @see https://github.com/LWTechGaming/tag-replacer/tree/master/builtin.js for information about custom replacers.
-   * @see https://github.com/LWTechGaming/tag-replacer#readme for information about options.
+   * @see https://github.com/linuswillner/tag-replacer/tree/master/builtin.js for information about custom replacers.
+   * @see https://github.com/linuswillner/tag-replacer#readme for information about options.
    */
   constructor (replacers, options) {
     this.replacers = replacers

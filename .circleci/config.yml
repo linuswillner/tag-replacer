@@ -10,17 +10,11 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Install dependencies
-          command: npm install
+          command: npm i
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
       - run:
-          name: Update Greenkeeper lockfile
-          command: npm run gk-update
-      - run:
           name: Run tests
           command: npm test
-      - run:
-          name: Upload Greenkeeper lockfile
-          command: npm run gk-upload

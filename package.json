@@ -1,6 +1,6 @@
 {
   "name": "tag-replacer",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "A Node.js module for replacing template tags in strings.",
   "main": "index.js",
   "scripts": {
@@ -25,15 +25,14 @@
   },
   "homepage": "https://github.com/linuswillner/tag-replacer#readme",
   "dependencies": {
-    "expr-eval": "^1.2.0"
+    "expr-eval": "^1.2.2"
   },
   "devDependencies": {
-    "eslint": "^4.11.0",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-node": "^5.2.1",
-    "eslint-plugin-promise": "^4.0.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "greenkeeper-lockfile": "^1.12.0"
+    "eslint": "^6.0.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0"
   }
 }

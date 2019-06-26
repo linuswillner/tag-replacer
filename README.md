@@ -1,7 +1,6 @@
 # tag-replacer
 
 <p>
-  <img src="https://badges.greenkeeper.io/linuswillner/tag-replacer.svg">
   <img src="https://img.shields.io/circleci/project/github/linuswillner/tag-replacer.svg">
   <img src="https://img.shields.io/github/tag/linuswillner/tag-replacer.svg">
   <img src="https://img.shields.io/npm/l/tag-replacer.svg">
@@ -17,9 +16,9 @@ The idea of this module is to provide a lightweight and simple alternative to Ta
 
 ## Installation & usage
 
-If you wish to receive updates more scarcely in an LTS-esque way, just install the module from NPM via `npm install --save tag-replacer`.
-
-If you want newer features immediately, make the module get the code from the `dev` branch via `npm install --save github:linuswillner/tag-replacer#dev`.
+```bash
+npm i tag-replacer
+```
 
 The module scans for **{tags}** in the strings it's provided with. The required format is **{cmd:arg}**. You can add as many semicolon-separated (**arg1;arg2;arg3**) arguments as you need. You can also use the TagScript syntax (**{cmd;arg}**) if `tagscript` is not set to `false` in the [options](#configuration).
 
