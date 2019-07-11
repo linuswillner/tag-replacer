@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/linuswillner/tag-replacer#readme",
   "dependencies": {
-    "expr-eval": "^1.2.2"
+    "expr-eval": "^1.2.3"
   },
   "devDependencies": {
     "eslint": "^6.0.1",
