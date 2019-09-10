@@ -4,7 +4,7 @@ const TR = require('./index.js') // You can require the NPM module
 // Or you can pass custom scripted replacers to the constructor to use them
 const custom = {
   // Simple replacer without checks
-  'join': args => { return args.join(', ') }
+  join: args => { return args.join(', ') }
   // Custom checks can be added here at will to enforce requirements
   // You can also require NPM modules or your own modules and incorporate them in replacers
 }

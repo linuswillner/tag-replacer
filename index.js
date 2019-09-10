@@ -35,29 +35,29 @@ class TagReplacer {
       if (this.options && this.options.tagscript === false) re = /{(.*?\S(:).*?\S)}/gi
       else re = /{(.*?\S(:|;).*?\S)}/gi
 
-      let tags = string.match(re)
+      const tags = string.match(re)
       let newString = string
 
       if (!tags) return string // No matches, return unchanged
       else {
-        for (let tag of tags) {
+        for (const tag of tags) {
         // Parse function name and args
-          let raw = tag.slice(1, -1)
-          let input = this.options && this.options.tagscript === false ? raw.split(/:/gi) : raw.split(/:|;/gi)
-          let name = String(input.splice(0, 1))
-          let args = input
+          const raw = tag.slice(1, -1)
+          const input = this.options && this.options.tagscript === false ? raw.split(/:/gi) : raw.split(/:|;/gi)
+          const name = String(input.splice(0, 1))
+          const args = input
 
-          if (!this.replacers && defaultReplacers.hasOwnProperty(name)) {
-            let val = defaultReplacers[name](args)
+          if (!this.replacers && defaultReplacers[name]) {
+            const val = defaultReplacers[name](args)
             newString = newString.replaceAll(newString, tag, val)
           } else if (this.replacers) {
             let val
             // Prioritise custom replacers over default
-            if (this.replacers.hasOwnProperty(name)) {
+            if (this.replacers[name]) {
               val = this.replacers[name](args)
               newString = newString.replaceAll(newString, tag, val)
               // Fallback to defaults if custom replacers didn't contain it
-            } else if (defaultReplacers.hasOwnProperty(name)) {
+            } else if (defaultReplacers[name]) {
               val = defaultReplacers[name](args)
               newString = newString.replaceAll(newString, tag, val)
             } else {
