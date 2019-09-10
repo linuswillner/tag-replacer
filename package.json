@@ -4,7 +4,8 @@
   "description": "A Node.js module for replacing template tags in strings.",
   "main": "index.js",
   "scripts": {
-    "test": "eslint ."
+    "test": "eslint .",
+    "test-fix": "eslint . --fix"
   },
   "repository": {
     "type": "git",
