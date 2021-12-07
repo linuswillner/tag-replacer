@@ -7,7 +7,7 @@ module.exports = {
   range: ([min, max]) => { return Math.floor(Math.random() * parseInt(max) + parseInt(min)) },
   randstr: ([chars, length]) => {
     let str = ''
-    for (let i = length; i > 0; i--) {
+    for (let i = parseInt(length); i > 0; i--) {
       str += chars[Math.floor(Math.random() * chars.length)]
     }
     return str
